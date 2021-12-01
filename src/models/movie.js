@@ -1,7 +1,5 @@
-const movies = ['Fight Club', 'American Beauty', 'Matrix'];
-
 module.exports = {
-    getMovies: function(){
-        return movies;
+    construct: function(id, name, year){
+       return {id: id, name: name, year: year};
     }
 }

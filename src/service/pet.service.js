@@ -34,7 +34,12 @@ module.exports = {
         return {};
     },
     getByName: function(name){
-        return pets.filter((pet) => pet.name.includes(name));
+        let petsDto = [];
+        const filtered =  pets.filter((pet) => pet.name.includes(name));
+        filtered.forEach(function(pet, i) {  
+            petsDto.push(petMapper.map(pet))
+        })
+        return petsDto;
     },
     post: function(pet){
         pet.id = pets.length + 1;

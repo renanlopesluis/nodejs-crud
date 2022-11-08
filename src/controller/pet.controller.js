@@ -14,8 +14,8 @@ module.exports = {
         });
 
         server.post(`${environment.baseUrl}/pets`, (req, res) => {
-            const { pet } = req.body;
-            return res.json(petService.post(pet));
+            const entity  = req.body;
+            return res.json(petService.post(entity));
         });
 
         server.delete(`${environment.baseUrl}/pets/:id`, (req, res) => {
@@ -23,14 +23,16 @@ module.exports = {
             return res.json(petService.remove(id));
         });
 
-        server.post(`${environment.baseUrl}/pets/bath`, (req, res) => {
+        server.put(`${environment.baseUrl}/pets/bath`, (req, res) => {
             const { petId, serviceCode } = req.body;
-            return res.json(petService.doBath(petId, serviceCode));
+            const response = {message: petService.doBath(petId, serviceCode)};
+            return res.json(response);
         });
 
-        server.post(`${environment.baseUrl}/pets/hair`, (req, res) => {
+        server.put(`${environment.baseUrl}/pets/hair`, (req, res) => {
             const { petId, serviceCode } = req.body;
-            return res.json(petService.doHairCare(petId, serviceCode));
+            const response = {message: petService.doHairCare(petId, serviceCode)};
+            return res.json(response);
         });
 
     }

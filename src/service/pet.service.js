@@ -21,18 +21,25 @@ module.exports = {
     list: function(){
         let petsDto = [];
         pets.forEach(function(pet, i) {  
-            petsDto.push(petMapper.map(pet, pet.petType))
+            petsDto.push(petMapper.map(pet))
         })
         return petsDto;
     },
     get: function(id){
-        return pets.filter((pet) => pet.id == id);
+        const petFound = pets.filter((pet) => pet.id == id);
+        if(petFound.length > 0){
+            const pet = petFound[0];
+            return petMapper.map(pet)
+        }
+        return {};
     },
     getByName: function(name){
         return pets.filter((pet) => pet.name.includes(name));
     },
     post: function(pet){
-        pets.push(pet);
+        pet.id = pets.length + 1;
+        if(pet)
+            pets.push(pet);
         return pets;
     },
     remove: function(id) {

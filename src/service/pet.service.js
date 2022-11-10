@@ -34,13 +34,16 @@ module.exports = {
         return {};
     },
     getByName: function(name){
-        const lowerName = name ? name.toLowerCase() : '' ;
-        let petsDto = [];
-        const filtered =  pets.filter((pet) => pet.name.toLowerCase().includes(lowerName));
-        filtered.forEach(function(pet, i) {  
-            petsDto.push(petMapper.map(pet))
-        })
-        return petsDto;
+        if (name){
+            let petsDto = [];
+            const filtered =  pets.filter((pet) => pet.name.toLowerCase().includes(name.toLowerCase()));
+            filtered.forEach(function(pet, i) {  
+                petsDto.push(petMapper.map(pet))
+            })
+            return petsDto;
+        } 
+        return pets;
+       
     },
     post: function(pet){
         pet.id = pets.length + 1;

@@ -34,8 +34,9 @@ module.exports = {
         return {};
     },
     getByName: function(name){
+        const lowerName = name ? name.toLowerCase() : '' ;
         let petsDto = [];
-        const filtered =  pets.filter((pet) => pet.name.includes(name));
+        const filtered =  pets.filter((pet) => pet.name.toLowerCase().includes(lowerName));
         filtered.forEach(function(pet, i) {  
             petsDto.push(petMapper.map(pet))
         })
